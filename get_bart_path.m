@@ -6,7 +6,7 @@ function [bart_path, isWSL] = get_bart_path()
 % Authors:
 % 2022 Jon Tamir <jtamir.utexas.edu>
 	
-	isWSL = false % assumes sockeye - linux cluster  
+	isWSL = false; % assumes sockeye - linux cluster  
 	[bart_installed, version_installed]	= system('bart version');
 	if bart_installed == 0
 		bart_path = version_installed;

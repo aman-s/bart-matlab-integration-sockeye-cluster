@@ -13,7 +13,7 @@ function test_bart()
     tolFloat = 1e-7;
 
     %% Test1: Environmental variable
-    bartPath = get_bart_path()
+    bartPath = get_bart_path();
     testAssert(~isempty(bartPath), 'BART path');
 
     %% Test2: Write/Read cfl
