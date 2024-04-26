@@ -5,26 +5,30 @@ function [bart_path, isWSL] = get_bart_path()
 %
 % Authors:
 % 2022 Jon Tamir <jtamir.utexas.edu>
-
+	
+	isWSL = false % assumes sockeye - linux cluster  
+	[bart_installed, version_installed]	= system('bart version')
+	if bart_installed == 1
+		bart_path = version_installed
 	% Check bart toolbox path
-	bart_path = getenv('BART_TOOLBOX_PATH');
-	isWSL = false;
-	if isempty(bart_path)
-		if ~isempty(getenv('TOOLBOX_PATH'))
-			bart_path = getenv('TOOLBOX_PATH');
-		elseif exist('/usr/local/bin/bart', 'file')
-			bart_path = '/usr/local/bin';
-		elseif exist('/usr/bin/bart', 'file')
-			bart_path = '/usr/bin';
-		else
-			% Try to execute bart inside wsl, if it works, then it returns status 0
-			[bartstatus, ~] = system('wsl bart version -V');
-			if bartstatus==0
-				[~, bart_path] = system('wsl dirname $(which bart)');
-				bart_path = strip(bart_path);
-				isWSL = true;
-			end
-		end
-	end
+	% bart_path = getenv('BART_TOOLBOX_PATH');
+	% isWSL = false;
+	% if isempty(bart_path)
+	% 	if ~isempty(getenv('TOOLBOX_PATH'))
+	% 		bart_path = getenv('TOOLBOX_PATH');
+	% 	elseif exist('/usr/local/bin/bart', 'file')
+	% 		bart_path = '/usr/local/bin';
+	% 	elseif exist('/usr/bin/bart', 'file')
+	% 		bart_path = '/usr/bin';
+	% 	else
+	% 		% Try to execute bart inside wsl, if it works, then it returns status 0
+	% 		[bartstatus, ~] = system('wsl bart version -V');
+	% 		if bartstatus==0
+	% 			[~, bart_path] = system('wsl dirname $(which bart)');
+	% 			bart_path = strip(bart_path);
+	% 			isWSL = true;
+	% 		end
+	% 	end
+	% end
 end
 
