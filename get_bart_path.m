@@ -8,7 +8,7 @@ function [bart_path, isWSL] = get_bart_path()
 	
 	isWSL = false % assumes sockeye - linux cluster  
 	[bart_installed, version_installed]	= system('bart version')
-	if bart_installed == 1
+	if bart_installed == 0
 		bart_path = version_installed
 	% Check bart toolbox path
 	% bart_path = getenv('BART_TOOLBOX_PATH');
