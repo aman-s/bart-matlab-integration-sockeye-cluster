@@ -88,7 +88,7 @@ function [varargout] = bart(cmd, varargin)
 			        ' ', strrep(out_str, filesep, '/'), '"']);
         end
     else
-		ERR = system([bart_path, '/bart ', cmd, ' ', in_str, ' ', out_str]);
+		ERR = system(['bart ', cmd, ' ', in_str, ' ', out_str]);
 	end
 
     % Remove input files
